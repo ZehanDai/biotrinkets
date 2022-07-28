@@ -16,7 +16,6 @@ This package implemented some small utils for bioinformatic analysis. In this ve
 
 
 ## Requirement
-------------
 + Python 3.8.3 / 3.6.9 (should work >= 3.6)
 + pandas 1.3.4 (no tested in other version)
 
@@ -28,25 +27,28 @@ Just simply ``pip install .`` or ``pip3 install .`` under the biotrinkets path.
 ## Usage
 
 calculate sequence size 
-`test_dir=/mnt/e/Scripts/python/biotrinkets/biotrinkets/fasta_tools/test_files # input folder
+`
+test_dir=/mnt/e/Scripts/python/biotrinkets/biotrinkets/fasta_tools/test_files # input folder
 test_oud=$test_dir/output # output folder 
 mkdir -p $test_oud
 
 infile=$test_dir/test.splitN.fa # input file
 outfile=$test_oud/test_size.tsv # output file 
 python3 -m fasta_tools -m get_size -i $infile -o $outfile`
-
+`
 
 extract sequence
-`infile=$test_dir/test.splitN.fa
+`
+infile=$test_dir/test.splitN.fa
 outfile=$test_oud/test_extract.fa
 echo seq1 seq2 seq3 seq4 seq5 | tr ' ' $'\n' > seqid.lst # create a sequence id list for extraction
-python3 -m fasta_tools -m extract -i $infile -o $outfile -l seqid.lst`
+python3 -m fasta_tools -m extract -i $infile -o $outfile -l seqid.lst
 `
 
 
-# subset sequence
-# create a subset table for subseting
+
+subset sequence # create a subset table for subseting
+`
 outfile=$test_oud/test_subset.fa
 echo seq1 seq2 seq3 seq4 seq5 | tr ' ' $'\n' > tmp1
 echo 1 1 1 1 1 | tr ' ' $'\n' > tmp2
@@ -55,22 +57,22 @@ paste tmp1 tmp2 tmp3 > seq_reg.tsv # region of query sequence to subset
 python3 -m fasta_tools -m subset -i $infile -o $outfile -t seq_reg.tsv
 rm tmp1 tmp2 tmp3
 echo
+`
 
-
-# get flank, extent version of subset, output include flanks of the regions you want to extractregfile=seq_reg.tsv
+get flank, extent version of subset, output include flanks of the regions you want to extractregfile=seq_reg.tsv
 infile=$test_dir/test.splitN.fa
 outfile=$test_oud/test_subset-flank.fa
 python3 -m fasta_tools -m get_flank -i $infile -o $outfile -t seq_reg.tsv -f 10
 echo
 
-# formatter
+formatter
 infile=$test_dir/test_TADB2-typeI_AT.fna # the width of the sequence is 60
 outfile=$test_oud/test_formatted.tsv
 python3 -m fasta_tools -m formatter -i $infile -o $outfile -w 100
 echo
 
 
-# splitN
+### splitN
 infile=$test_dir/test.splitN.fa
 outfile=$test_oud/test_split.fa
 python3 -m fasta_tools -m splitN -i $infile -o $outfile -n 10 -S 100
