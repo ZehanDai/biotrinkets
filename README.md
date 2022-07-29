@@ -12,7 +12,7 @@ This package implemented some small utils for bioinformatic analysis. In this ve
 
 
 ## Version
-+ Biotrinkets 0.2 (tested on WSL Ubuntu 18 and Ubuntu 20)
++ 0.2 
 
 
 ## Requirement
